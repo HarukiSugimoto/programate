@@ -1,0 +1,164 @@
+header{
+    width: 100%;
+}
+header div{
+    float:left;
+}
+.menu {
+    width: 100%;
+    background-color: aqua;
+}
+#title {
+    font-size: 30px;
+    margin: 10px;
+}
+.menu_item {
+    line-height: 62px;
+    margin-left: 10px;
+}
+.menu_item a {
+    display: block;
+}
+.menu_item a:hover {
+    background-color: rgb(72, 228, 176);
+    text-decoration: none;
+}
+.clear{
+    clear: both;
+}
+.body {
+    width: 75%;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10%;
+}
+.lessons {
+    width: 100%;
+}
+.lesson a:hover {
+    text-decoration: none;
+}
+.course_one_navi, .course_two_navi, .course_three_navi {
+    display: none;
+}
+.course_one_close, .course_two_close, .course_three_close {
+    display: none;
+}
+.lesson {
+    float: left;
+    width: 30%;
+    margin: 15px;
+    border: 3px gray solid;
+    border-radius: 20px;
+}
+.lesson p{
+    vertical-align: middle;
+}
+.fas{
+    font-size: 75px;
+}
+
+.fa-rotate-45 {
+    transform: rotate(45deg);
+    margin: 5px;
+}
+.fa-rotate-315 {
+    transform: rotate(315deg);
+    margin: 5px;
+}
+.arrows:not(.salt) {
+    width: 50%;
+    margin: 0 auto;
+}
+.arrow {
+    display: inline-block;
+}
+p.arrow {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.square {
+    border: 5px solid;
+    padding: 20px 0;
+}
+.flow-chart {
+    float: right;
+    width: 50%;
+}
+textarea {
+    resize: none;
+    width: 30%;
+    text-align: center;
+}
+.curry {
+    margin: 0 auto;
+    width: 30%;
+}
+.question_form {
+    width: 50%;
+    float: left;
+}
+.question {
+    border: 5px solid;
+}
+.question::before {
+    content: '指令　';
+    color: red;
+    font-size: 20px;
+}
+.choice {
+    background-color: gold;
+    padding:2px;
+    margin: 2px;
+    display: inline;
+}
+.choice_form {
+    display: flex;
+    background-color: aquamarine;
+}
+.choice_form::before {
+    content: '選択肢';
+    font-size: 20px;
+    color: orange;
+
+}
+.submit {
+    display: inline-block;
+    padding: 5px;
+    margin: 0 auto;
+    background-color: greenyellow;
+    color: red;
+    font-size: 20px;
+    margin-top: 20px;
+}
+.submit:hover, .next:hover{
+    text-decoration: none;
+}
+.next {
+    display: inline-block;
+    font-size: 20px;
+    padding: 5px;
+    margin: 20px;
+    background-color: khaki;
+}
+.salt {
+    width: 70%;
+    float: right;
+}
+.folk {
+    padding: 5px;
+    background-color: palevioletred;
+    display: inline-block;
+}
+.hanpuku {
+    width: 80%;
+    margin: 0 auto;
+    background-color: powderblue;
+}
+.han_end {
+    width: 50%;
+}
+.han_end div {
+    display: flex;
+}

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class='lessons'>
+    <div class='lesson'>
+        <div>コース１ 分岐</div>
+        <button class='course_one_open'>OPEN</button>
+        <button class='course_one_close'>CLOSE</button>
+        <div class='course_one_navi'>
+            <p>このコースではプログラミングで分岐に当たる内容について学べます。分岐とは、状況によって次の行動を変えたり、ある場合のみだけ行動したりすることなどです。言葉だけでは伝わらない部分もありますので、このコースにて学んでください。</p>
+            <button><a href="{% url 'myapp:course_one_example' %}">このコースを受ける</a></button>
+        </div>
+    </div>
+    <div class='lesson'>
+        <div>コース２ 同時</div>
+        <button class='course_two_open'>OPEN</button>
+        <button class='course_two_close'>CLOSE</button>
+        <div class='course_two_navi'>
+            <p>このコースではプログラミングで同時に当たる内容について学べます。同時とは、動作対象は違うかもしれないが、同じ動作をするものをまとめてやることである。例えば、人参とジャガイモの皮を剥いて切るとき、人参の皮を剥いて切って、ジャガイモの皮を剥いて切る。よりかは人参とジャガイモの皮を同時に剥いて、その後にそれぞれ切る方が効率がいい。これが同時の役割である。詳しくはこのコースにて学んでください。</p>
+            <button><a href="{% url 'myapp:course_two_example' %}">このコースを受ける</a></button>
+        </div>
+    </div>
+    <div class='lesson'>
+        <div>コース３ 反復</div>
+        <button class='course_three_open'>OPEN</button>
+        <button class='course_three_close'>CLOSE</button>
+        <div class='course_three_navi'>
+            <p>このコースではプログラミングで反復に当たる内容について学べます。反復とは、動作を繰り返すことである。ある目標地点まで達成するまで、同じことを繰り返すことです。言葉ではわからないところもあるので、このコースにて学んでください。</p>
+            <button><a href="{% url 'myapp:course_three_example' %}">このコースを受ける</a></button>
+        </div>
+    </div>
+    <p class='clear'></p>
+</div>
+<script
+        src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+        crossorigin="anonymous"></script>
+    <script>
+        {% load static %}
+        $(function() {
+            $('.course_one_open').click(function(){
+                $('.course_one_navi').slideDown(1000);
+                $(this).hide();
+                $('.course_one_close').show();
+            });
+            $('.course_one_close').click(function(){
+                $('.course_one_navi').slideUp(1000);
+                $(this).hide();
+                $('.course_one_open').show();
+            })
+            $('.course_two_open').click(function(){
+                $('.course_two_navi').slideDown(1000);
+                $(this).hide();
+                $('.course_two_close').show();
+            });
+            $('.course_two_close').click(function(){
+                $('.course_two_navi').slideUp(1000);
+                $(this).hide();
+                $('.course_two_open').show();
+            })
+            $('.course_three_open').click(function(){
+                $('.course_three_navi').slideDown(1000);
+                $(this).hide();
+                $('.course_three_close').show();
+            });
+            $('.course_three_close').click(function(){
+                $('.course_three_navi').slideUp(1000);
+                $(this).hide();
+                $('.course_three_open').show();
+            })
+        });
+    </script>
+{% endblock %}

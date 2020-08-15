@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class='flow-chart'>
+    <textarea readonly class='square' id='answer_one'></textarea>
+    <div class='arrows'>
+        <i class="arrow fas fa-long-arrow-alt-down"></i>
+        <p class='clear'></p>
+    </div>
+    <div class='hanpuku'>
+        <div>
+            <p>反復</p>
+            <textarea readonly class='square' id='answer_two'></textarea>
+        </div>
+        <div class='ssalt'>
+            <div class='arrows'>
+                <i class="arrow fas fa-long-arrow-alt-down"></i>
+                <p class='clear'></p>
+            </div>
+            <textarea readonly class='square' id='answer_three'></textarea>
+            <p class='clear'></p>
+        </div>
+    </div>
+    <div class='ssalt'>
+        <div class='arrows'>
+            <p class='arrow'>はずれ</p><i class="arrow fas fa-long-arrow-alt-down fa-rotate-45"></i>
+            <i class="arrow fas fa-long-arrow-alt-down fa-rotate-315"></i><p class='arrow'>当たり</p>
+            <p class='clear'></p>
+        </div>
+        <p class='clear'></p>
+    </div>
+    <textarea readonly class='square'>色が塗られているところをもう一度！</textarea>
+    <textarea readonly class='square'>終了</textarea>
+</div>
+<div class='question_form'>
+    <p class='question'>ジャガイモが柔らかくなるまで茹でよう！まずは大根を切り、水の中に入れる！そして、茹ではじめ1分待とう！そしたら、つまようじで固さを確認！まだ固ければ、また1分待とう！また固さを確認しよう！柔らかくなるまでずっとこれを繰り返そう！十分に柔らかくなったら、完成！</p>
+    <div class='choice_form'>
+        <p class='choice' id='choice_three' draggable="true">つまようじで固さを確認</p>
+        <p class='choice' id='choice_one' draggable="true">茹で始める</p>
+        <p class='choice' id='choice_two' draggable="true">1分待つ</p>
+    </div>
+    <div>
+        <a class='submit'>完成！</a>
+        <a class='reload'>リセット</a>
+    </div>
+    <a class='next' href="{% url 'myapp:home' %}">コース一覧へ</a>
+</div>
+<script
+        src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+        crossorigin="anonymous"></script>
+    <script>
+        {% load static %}
+        $(function() {
+            var id_name = '';
+            var correct_audio = new Audio("{% static 'sound/Correct.mp3' %}");
+            var wrong_audio = new Audio("{% static 'sound/Wrong.mp3' %}");
+            $('.next').hide();
+            $('.choice').on('drag', function(e){
+                id_name = $(this).attr('id');
+            });
+            $('textarea').on('dragover', function(e){
+                e.preventDefault();
+            });
+            $('textarea').on('drop', function(e){
+                if($(this).val() !== ''){
+                    alert('一つの空欄には一つの選択肢しか入れることができません。');
+                } else {
+                    e.preventDefault();
+                    var choice = document.getElementById(id_name);
+                    $(choice).hide();
+                    $(this).val($(choice).text());
+                    $(this).css({
+                        'color': 'red'
+                    });
+                };
+            });
+            $('.submit').click(function(){
+                if($('#answer_one').val() == $('#choice_one').text() && $('#answer_two').val() == $('#choice_two').text() && $('#answer_three').val() == $('#choice_three').text()){
+                    correct_audio.play();
+                    $('.next').show();
+                }else{
+                    wrong_audio.play();
+                    $('#answer_one').val('');
+                    $('#answer_two').val('');
+                    $('#answer_three').val('');
+                    $('.choice').show();
+                    $('textarea').css({
+                        'color': 'black'
+                    });
+                };
+            });
+            $('.reload').click(function(){
+                location.reload();
+            });
+        });     
+    </script>
+{% endblock %}
