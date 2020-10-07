@@ -39,10 +39,10 @@ header div{
 .lesson a:hover {
     text-decoration: none;
 }
-.course_one_navi, .course_two_navi, .course_three_navi {
+.course_one_navi, .course_two_navi, .course_three_navi, .course_low_navi, .course_middle_navi, .course_high_navi {
     display: none;
 }
-.course_one_close, .course_two_close, .course_three_close {
+.course_one_close, .course_two_close, .course_three_close, .course_low_close, .course_middle_close, .course_high_close {
     display: none;
 }
 .lesson {
@@ -161,4 +161,31 @@ textarea {
 }
 .han_end div {
     display: flex;
+}
+.hanpuku-end {
+    display: inline;
+}
+
+.commentary_form {
+    margin: 5px;
+    display: none;
+}
+.commentary {
+    border: 5px solid;
+}
+.commentary::before {
+    content: '解説　';
+    color: rgb(31, 126, 31);
+    font-size: 20px;
+}
+.bunnki {
+    background-color: lightgrey;
+    width: 80%;
+    margin: 0 auto;
+}
+.middle_hanp {
+    width: 80%;
+}
+.high_course {
+    padding-bottom: 15px;
 }

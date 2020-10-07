@@ -1,50 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class='flow-chart'>
-    <div class='hanpuku'>
-        <div>
-            <p>反復</p>
-            <textarea readonly class='square' id='answer_one'></textarea>
-        </div>
-        <div class='ssalt'>
-            <div class='arrows'>
-                <i class="arrow fas fa-long-arrow-alt-down"></i>
-                <p class='clear'></p>
-            </div>
-            <textarea readonly class='square' id='answer_two'></textarea>
-            <p class='clear'></p>
-        </div>
-        <div class='ssalt'>
-            <div class='arrows salt'>
-                <p class='arrow'>はずれ</p><i class="arrow fas fa-long-arrow-alt-down"></i>
-                <div class='hanpuku-end'><i class="arrow fas fa-long-arrow-alt-down fa-rotate-270"></i>
-                <p class='arrow' style='color: #FF6600;'>当たり</p>
-                <textarea readonly class='square' style="color: #FF6600;">終了</textarea></div>
-                <p class='clear'></p>
-            </div>
-            <p class='clear'></p>
-        </div>
-        <textarea readonly class='square'>青色に塗られているところの最初からもう一度！</textarea>
-    </div>
-</div>
 <div class='question_form'>
-    <p class='question'>くじを引いて結果を確認しよう！当たりだったら終了で、はずれだったら同じことをもう一度やろう！</p>
+    <p class='question'>カレンダーをみて、きょうが　なんようびか　たしかめよう！土・日　だったら　がっこう　やすみ。　それいがい　だったら　がっこうに　いく！</p>
     <div class='choice_form'>
-        <p class='choice' id='choice_one' draggable="true">くじを引く</p>
-        <p class='choice' id='choice_two' draggable="true">結果を確認する</p>
+        <p class='choice' id='choice_one' draggable="true">がっこうにいく</p>
+        <p class='choice' id='choice_two' draggable="true">がっこう やすみ</p>
+        <p class='choice' id='choice_three' draggable="true">カレンダーをみる</p>
     </div>
     <div>
-        <a class='submit'>完成！</a>
+        <a class='submit'>かんせい！</a>
         <a class='reload'>リセット</a>
+        <a class='comment'>解説</a>
     </div>
-    <a class='next' href="{% url 'myapp:course_three_main' %}">本題へ</a>
+    <div class='commentary_form'>
+        <p class='commentary'>1番さいしょに、カレンダーをみよう！！</p>
+    </div>
+    <a class='next' href="{% url 'myapp:low_for' %}">つぎのもんだいへ</a>
+    <img src="https://1.bp.blogspot.com/-RJRt_Hv37Kk/VMIu-CCBpII/AAAAAAAAq2E/JsIJ8pPwmuY/s400/calender_takujou.png">
+</div>
+<div class='flow-chart'>
+    <textarea readonly class='square' id='answer_three'></textarea>
+    <div class='bunnki'>
+        <p>ぶんき</p>
+        <div class='ya_bunnki'>
+            <p class='arrow'>　　土・日</p>
+            <i class="arrow fas fa-long-arrow-alt-down fa-rotate-45"></i>
+            <i class="arrow fas fa-long-arrow-alt-down fa-rotate-315"></i>
+            <p class='arrow'>それいがい</p>
+        </div>
+        <textarea readonly class='square' id='answer_two'></textarea>
+        <textarea readonly class='square' id='answer_one'></textarea>
+    </div>
 </div>
 <script
         src="https://code.jquery.com/jquery-3.5.1.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
         crossorigin="anonymous"></script>
-    <script>
-        {% load static %}
+<script>
+    {% load static %}
         $(function() {
             var id_name = '';
             var correct_audio = new Audio("{% static 'sound/Correct.mp3' %}");
@@ -69,14 +62,19 @@
                     });
                 };
             });
+            $('.comment').click(function(){
+                $('.commentary_form').show();
+            });
             $('.submit').click(function(){
-                if($('#answer_one').val() == $('#choice_one').text() && $('#answer_two').val() == $('#choice_two').text()){
+                if($('#answer_one').val() == $('#choice_one').text() && $('#answer_two').val() == $('#choice_two').text() && $('#answer_three').val() == $('#choice_three').text()){
                     correct_audio.play();
                     $('.next').show();
+                    $('.commentary_form').show();
                 }else{
                     wrong_audio.play();
                     $('#answer_one').val('');
                     $('#answer_two').val('');
+                    $('#answer_three').val('');
                     $('.choice').show();
                     $('textarea').css({
                         'color': 'black'
@@ -86,6 +84,7 @@
             $('.reload').click(function(){
                 location.reload();
             });
-        });     
-    </script>
+        });
+</script>
+
 {% endblock %}
